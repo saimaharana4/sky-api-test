@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Bittrex API"
+    },
+    "host": "127.0.0.1:5000/",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/markets/summaries": {
+        "get": {
+          "summary": "Get market summaries",
+          "operationId": "getMarketSummaries",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "An array of market summaries",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/MarketSummary"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/markets/{marketSymbol}/summary": {
+        "get": {
+          "summary": "Get market summary",
+          "operationId": "getMarketSummary",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "marketSymbol",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A market summary",
+              "schema": {
+                "$ref": "#/definitions/MarketSummary"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "MarketSummary": {
+        "type": "object",
+        "properties": {
+          
+          "high": {
+            "type": "string"
+          },
+          "low": {
+            "type": "string"
+          },
+          "percentChange": {
+            "type": "string"
+          },
+          "quoteVolume": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

@@ -1,8 +1,22 @@
 from flask import Flask, jsonify, request
 import requests
 import pytest
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
+
+# Swagger Configs
+SWAGGER_URL ='/swagger'
+API_URL= '/static/swagger.json'
+SWAGGER_BLUEPRINT =get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name':"SKY API "
+    }
+)
+app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
 
 @app.route('/markets/summaries', methods=['GET'])
 def get_market_summaries():
