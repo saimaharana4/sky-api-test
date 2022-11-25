@@ -4,12 +4,9 @@ services:
   app:
     build:
       context: .
-      args: 
-        - DEV=true
     ports:
       - "5000:5000"
     volumes:
       - ./app:/app
     command: >
       sh -c "python app.py"
-      sh -c "pytest app.py"
